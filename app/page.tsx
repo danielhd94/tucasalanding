@@ -64,7 +64,12 @@ export default function Home() {
                   </a>
 
                   <div className="flex gap-4">
-                    <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg">
+                    <a
+                      href="https://fromtherestaurant.com/tu-casa/menu/70-Washington-Ave/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg"
+                    >
                       <span className="flex items-center gap-2">
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M19 7c0-1.1-.9-2-2-2h-3V3c0-.55-.45-1-1-1H8c-.55 0-1 .45-1 1v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7zM9 3h6v2H9V3zm10 16H5V7h3v1c0 .55.45 1 1 1s1-.45 1-1V7h4v1c0 .55.45 1 1 1s1-.45 1-1V7h3v12z" />
@@ -72,7 +77,7 @@ export default function Home() {
                         </svg>
                         Delivery
                       </span>
-                    </button>
+                    </a>
 
                     <button className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg">
                       <span className="flex items-center gap-2">
@@ -186,10 +191,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why choose us - Restaurant style */}
+      {/* Why choose us - Restaurant style with improved cards */}
       <section className="py-24 bg-gradient-to-b from-gray-50 to-stone-100">
         <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
 
             {/* Section header */}
             <div className={`text-center mb-20 ${isClient ? 'animate-fade-in-up' : ''}`}>
@@ -201,55 +206,109 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Features with organic layout */}
-            <div className="grid md:grid-cols-3 gap-12">
+            {/* Improved Feature Cards */}
+            <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
 
-              {/* Feature 1 */}
-              <div className={`text-center group ${isClient ? 'animate-fade-in-up' : ''}`}>
-                <div className="relative mb-8">
-                  <div className="w-32 h-32 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full mx-auto flex items-center justify-center organic-shadow group-hover:organic-shadow-lg transition-all duration-300">
-                    <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12.5 2C13.81 2 15.29 3.42 15.29 5.14C15.29 6.86 13.81 8.29 12.5 8.29C11.19 8.29 9.71 6.86 9.71 5.14C9.71 3.42 11.19 2 12.5 2ZM21 9V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V9C3 7.9 3.9 7 5 7H8L10 5H14L16 7H19C20.1 7 21 7.9 21 9ZM19 9H16.83L15.83 8H8.17L7.17 9H5V20H19V9ZM12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18ZM12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8Z" />
-                    </svg>
+              {/* Feature 1 - Enhanced Card */}
+              <div className={`group ${isClient ? 'animate-fade-in-up' : ''}`}>
+                <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
+                  {/* Gradient background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Icon container */}
+                    <div className="mb-8">
+                      <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mx-auto flex items-center justify-center organic-shadow group-hover:scale-110 transition-transform duration-300">
+                        <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12.5 2C13.81 2 15.29 3.42 15.29 5.14C15.29 6.86 13.81 8.29 12.5 8.29C11.19 8.29 9.71 6.86 9.71 5.14C9.71 3.42 11.19 2 12.5 2ZM21 9V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V9C3 7.9 3.9 7 5 7H8L10 5H14L16 7H19C20.1 7 21 7.9 21 9ZM19 9H16.83L15.83 8H8.17L7.17 9H5V20H19V9ZM12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18ZM12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8Z" />
+                        </svg>
+                      </div>
+                      <div className="w-12 h-1 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full mx-auto mt-6"></div>
+                    </div>
+
+                    {/* Text content */}
+                    <div className="text-center">
+                      <h4 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-orange-600 transition-colors duration-300">
+                        Ingredientes frescos
+                      </h4>
+                      <p className="text-gray-600 leading-relaxed text-lg">
+                        Seleccionamos cuidadosamente cada ingrediente para garantizar la máxima frescura y sabor en cada bocado
+                      </p>
+                    </div>
+
+                    {/* Decorative element */}
+                    <div className="absolute top-6 right-6 w-3 h-3 bg-orange-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-orange-500 rounded-full"></div>
                 </div>
-                <h4 className="text-2xl font-semibold text-gray-800 mb-4">Ingredientes frescos</h4>
-                <p className="text-gray-600 leading-relaxed">
-                  Seleccionamos cuidadosamente cada ingrediente para garantizar la máxima frescura y sabor en cada bocado
-                </p>
               </div>
 
-              {/* Feature 2 */}
-              <div className={`text-center group ${isClient ? 'animate-fade-in-up' : ''}`}>
-                <div className="relative mb-8">
-                  <div className="w-32 h-32 bg-gradient-to-br from-green-500 to-green-600 rounded-full mx-auto flex items-center justify-center organic-shadow group-hover:organic-shadow-lg transition-all duration-300">
-                    <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M13,2.05V5.08C16.39,5.57 19,8.47 19,12C19,12.9 18.82,13.75 18.5,14.54L21.12,16.07C21.68,14.83 22,13.45 22,12C22,6.82 18.05,2.55 13,2.05M12,19A7,7 0 0,1 5,12C5,8.47 7.61,5.57 11,5.08V2.05C5.94,2.55 2,6.81 2,12A10,10 0 0,0 12,22C15.3,22 18.23,20.39 20.05,17.91L17.45,16.38C16.17,18.37 14.21,19 12,19Z" />
-                    </svg>
+              {/* Feature 2 - Enhanced Card */}
+              <div className={`group ${isClient ? 'animate-fade-in-up' : ''}`}>
+                <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
+                  {/* Gradient background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-green-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Icon container */}
+                    <div className="mb-8">
+                      <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl mx-auto flex items-center justify-center organic-shadow group-hover:scale-110 transition-transform duration-300">
+                        <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M13,2.05V5.08C16.39,5.57 19,8.47 19,12C19,12.9 18.82,13.75 18.5,14.54L21.12,16.07C21.68,14.83 22,13.45 22,12C22,6.82 18.05,2.55 13,2.05M12,19A7,7 0 0,1 5,12C5,8.47 7.61,5.57 11,5.08V2.05C5.94,2.55 2,6.81 2,12A10,10 0 0,0 12,22C15.3,22 18.23,20.39 20.05,17.91L17.45,16.38C16.17,18.37 14.21,19 12,19Z" />
+                        </svg>
+                      </div>
+                      <div className="w-12 h-1 bg-gradient-to-r from-green-500 to-green-600 rounded-full mx-auto mt-6"></div>
+                    </div>
+
+                    {/* Text content */}
+                    <div className="text-center">
+                      <h4 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-green-600 transition-colors duration-300">
+                        Servicio rápido
+                      </h4>
+                      <p className="text-gray-600 leading-relaxed text-lg">
+                        Nuestro equipo trabaja con eficiencia para que disfrutes tu comida caliente y en el tiempo perfecto
+                      </p>
+                    </div>
+
+                    {/* Decorative element */}
+                    <div className="absolute top-6 right-6 w-3 h-3 bg-green-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-green-500 rounded-full"></div>
                 </div>
-                <h4 className="text-2xl font-semibold text-gray-800 mb-4">Servicio rápido</h4>
-                <p className="text-gray-600 leading-relaxed">
-                  Nuestro equipo trabaja con eficiencia para que disfrutes tu comida caliente y en el tiempo perfecto
-                </p>
               </div>
 
-              {/* Feature 3 */}
-              <div className={`text-center group ${isClient ? 'animate-fade-in-up' : ''}`}>
-                <div className="relative mb-8">
-                  <div className="w-32 h-32 bg-gradient-to-br from-gray-500 to-gray-600 rounded-full mx-auto flex items-center justify-center organic-shadow group-hover:organic-shadow-lg transition-all duration-300">
-                    <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
-                    </svg>
+              {/* Feature 3 - Enhanced Card */}
+              <div className={`group ${isClient ? 'animate-fade-in-up' : ''}`}>
+                <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
+                  {/* Gradient background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Icon container */}
+                    <div className="mb-8">
+                      <div className="w-20 h-20 bg-gradient-to-br from-gray-500 to-gray-600 rounded-2xl mx-auto flex items-center justify-center organic-shadow group-hover:scale-110 transition-transform duration-300">
+                        <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+                        </svg>
+                      </div>
+                      <div className="w-12 h-1 bg-gradient-to-r from-gray-500 to-gray-600 rounded-full mx-auto mt-6"></div>
+                    </div>
+
+                    {/* Text content */}
+                    <div className="text-center">
+                      <h4 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-gray-600 transition-colors duration-300">
+                        Preparado con amor
+                      </h4>
+                      <p className="text-gray-600 leading-relaxed text-lg">
+                        Cada platillo es preparado con dedicación y cariño, como si fuera para nuestra propia familia
+                      </p>
+                    </div>
+
+                    {/* Decorative element */}
+                    <div className="absolute top-6 right-6 w-3 h-3 bg-gray-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gray-500 rounded-full"></div>
                 </div>
-                <h4 className="text-2xl font-semibold text-gray-800 mb-4">Preparado con amor</h4>
-                <p className="text-gray-600 leading-relaxed">
-                  Cada platillo es preparado con dedicación y cariño, como si fuera para nuestra propia familia
-                </p>
               </div>
             </div>
           </div>
