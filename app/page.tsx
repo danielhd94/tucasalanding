@@ -41,8 +41,11 @@ export default function Home() {
                 <div className={`relative ${isClient ? 'animate-fade-in-up' : ''}`}>
                   <p className="text-2xl md:text-3xl text-gray-700 font-light leading-relaxed">
                     <span className="text-orange-500 font-serif italic text-4xl">&ldquo;</span>
-                    El buen sabor, hecho con amor
+                    El sabor de tu casa
                     <span className="text-orange-500 font-serif italic text-4xl">&rdquo;</span>
+                  </p>
+                  <p className="text-xl md:text-2xl text-gray-600 font-light italic mt-2">
+                    Hecho con amor
                   </p>
                   <div className="absolute -bottom-2 left-1/2 lg:left-0 transform -translate-x-1/2 lg:translate-x-0 w-24 h-1 bg-gradient-to-r from-orange-500 to-green-500 rounded-full"></div>
                 </div>
@@ -79,15 +82,17 @@ export default function Home() {
                       </span>
                     </a>
 
-                    <button className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg">
+                    <a
+                      href="tel:+12076305414"
+                      className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg"
+                    >
                       <span className="flex items-center gap-2">
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z" />
-                          <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z" />
+                          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
                         </svg>
                         Pickup
                       </span>
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -145,12 +150,28 @@ export default function Home() {
                 Nuestro equipo está esperando para prepararte una experiencia culinaria inolvidable.
                 <span className="text-orange-500 font-semibold block mt-2">¡Contáctanos ahora!</span>
               </p>
+
+              {/* Restaurant Address */}
+              <div className="mt-8 p-6 bg-white rounded-2xl organic-shadow max-w-md mx-auto">
+                <div className="flex items-center gap-4 text-gray-700">
+                  <div className="bg-orange-100 p-3 rounded-full">
+                    <svg className="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-lg">Nuestra ubicación</div>
+                    <div className="text-gray-600">70 Washington Ave</div>
+                    <div className="text-gray-600">Portland, ME 04101, USA</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Contact options with restaurant feel */}
             <div className={`flex flex-col md:flex-row gap-8 justify-center items-center ${isClient ? 'animate-fade-in-up' : ''}`}>
               <a
-                href="tel:+15514822835"
+                href="tel:+12076305414"
                 className="group relative bg-white hover:bg-gray-50 text-gray-800 px-10 py-8 rounded-2xl transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg min-w-[320px]"
               >
                 <div className="flex items-center gap-6">
@@ -161,8 +182,8 @@ export default function Home() {
                   </div>
                   <div className="text-left">
                     <div className="font-semibold text-xl text-gray-800">Llamar ahora</div>
-                    <div className="text-orange-500 font-bold text-lg">+1 551 482 2835</div>
-                    <div className="text-gray-500 text-sm">Atención inmediata</div>
+                    <div className="text-orange-500 font-bold text-lg">+1 (207) 630-5414</div>
+                    <div className="text-gray-500 text-sm">70 Washington Ave, Portland, ME</div>
                   </div>
                 </div>
               </a>
