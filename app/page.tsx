@@ -285,10 +285,10 @@ export default function Home() {
                     {/* Text content */}
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-green-600 transition-colors duration-300">
-                        Servicio rápido
+                        Tiempo de calidad
                       </h4>
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        Nuestro equipo trabaja con eficiencia para que disfrutes tu comida caliente y en el tiempo perfecto
+                        Nuestros platillos se preparan en 20-25 minutos, el tiempo perfecto para que cada ingrediente desarrolle su sabor completo
                       </p>
                     </div>
 
@@ -319,10 +319,10 @@ export default function Home() {
                     {/* Text content */}
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-gray-600 transition-colors duration-300">
-                        Preparado con amor
+                        Experiencia familiar
                       </h4>
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        Cada platillo es preparado con dedicación y cariño, como si fuera para nuestra propia familia
+                        Disfruta de un ambiente acogedor donde cada cliente es tratado como parte de nuestra familia
                       </p>
                     </div>
 
