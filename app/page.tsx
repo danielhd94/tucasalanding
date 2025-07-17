@@ -83,7 +83,7 @@ export default function Home() {
                     </a>
 
                     <a
-                      href="tel:+12076305414"
+                      href="tel:+12075360016"
                       className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg"
                     >
                       <span className="flex items-center gap-2">
@@ -106,7 +106,7 @@ export default function Home() {
                   {/* Main food image */}
                   <div className="relative bg-white rounded-3xl p-6 organic-shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
                     <Image
-                      src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                      src="/hero.jpg"
                       alt="Deliciosa comida de Tu Casa Restaurantes"
                       width={600}
                       height={500}
@@ -171,7 +171,7 @@ export default function Home() {
             {/* Contact options with restaurant feel */}
             <div className={`flex flex-col md:flex-row gap-8 justify-center items-center ${isClient ? 'animate-fade-in-up' : ''}`}>
               <a
-                href="tel:+12076305414"
+                href="tel:+12075360016"
                 className="group relative bg-white hover:bg-gray-50 text-gray-800 px-10 py-8 rounded-2xl transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg min-w-[320px]"
               >
                 <div className="flex items-center gap-6">
@@ -182,7 +182,7 @@ export default function Home() {
                   </div>
                   <div className="text-left">
                     <div className="font-semibold text-xl text-gray-800">Llamar ahora</div>
-                    <div className="text-orange-500 font-bold text-lg">+1 (207) 630-5414</div>
+                    <div className="text-orange-500 font-bold text-lg">+1 (207) 536-0016</div>
                     <div className="text-gray-500 text-sm">70 Washington Ave, Portland, ME</div>
                   </div>
                 </div>
@@ -338,7 +338,7 @@ export default function Home() {
 
       {/* Floating Action Buttons - Subtle and elegant */}
       <a
-        href="tel:+15514822835"
+        href="tel:+12075360016"
         className="fixed bottom-28 right-6 w-16 h-16 bg-orange-500 hover:bg-orange-600 text-white rounded-full organic-shadow hover:organic-shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-50"
         aria-label="Llamar al restaurante"
       >
