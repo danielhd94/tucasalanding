@@ -66,34 +66,7 @@ export default function Home() {
                     </span>
                   </a>
 
-                  <div className="flex gap-4">
-                    <a
-                      href="https://online.tucasarestaurantes.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg"
-                    >
-                      <span className="flex items-center gap-2">
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M19 7c0-1.1-.9-2-2-2h-3V3c0-.55-.45-1-1-1H8c-.55 0-1 .45-1 1v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7zM9 3h6v2H9V3zm10 16H5V7h3v1c0 .55.45 1 1 1s1-.45 1-1V7h4v1c0 .55.45 1 1 1s1-.45 1-1V7h3v12z" />
-                          <path d="M12 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
-                        </svg>
-                        Delivery
-                      </span>
-                    </a>
 
-                    <a
-                      href="tel:+12075360016"
-                      className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg"
-                    >
-                      <span className="flex items-center gap-2">
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-                        </svg>
-                        Pickup
-                      </span>
-                    </a>
-                  </div>
                 </div>
               </div>
 
