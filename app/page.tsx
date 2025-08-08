@@ -42,7 +42,7 @@ export default function Home() {
                 <div className={`relative ${isClient ? 'animate-fade-in-up' : ''}`}>
                   <p className="text-2xl md:text-3xl text-gray-700 font-light leading-relaxed">
                     <span className="text-orange-500 font-serif italic text-4xl">&ldquo;</span>
-                    El sabor de tu casa
+                    The taste of home
                     <span className="text-orange-500 font-serif italic text-4xl">&rdquo;</span>
                   </p>
                   <p className="text-xl md:text-2xl text-gray-600 font-light italic mt-2">
@@ -63,7 +63,7 @@ export default function Home() {
                       <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-.78-.78-2.05-.78-2.83 0-.78.78-.78 2.05 0 2.83l7.02 7.01zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.20-1.10-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41-6.51-6.75z" />
                       </svg>
-                      Ver nuestro menú
+                      View our menu
                     </span>
                   </a>
 
@@ -81,7 +81,7 @@ export default function Home() {
                   <div className="relative bg-white rounded-3xl p-6 organic-shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
                     <Image
                       src="/hero.jpg"
-                      alt="Deliciosa comida de Tu Casa Restaurantes"
+                      alt="Delicious food from Tu Casa Restaurants"
                       width={600}
                       height={500}
                       className="rounded-2xl object-cover w-full h-[400px] md:h-[500px] transition-all duration-500 group-hover:scale-105"
@@ -93,14 +93,14 @@ export default function Home() {
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
-                      ¡Especialidad del chef!
+                      Chef&apos;s Special!
                     </div>
 
                     <div className={`absolute -bottom-3 -left-3 bg-green-600 text-white px-4 py-2 rounded-full font-medium text-xs organic-shadow transform -rotate-12 flex items-center gap-2 ${isClient ? 'animate-pulse' : ''}`}>
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
                       </svg>
-                      Ingredientes frescos
+                      Fresh ingredients
                     </div>
                   </div>
                 </div>
@@ -256,11 +256,11 @@ export default function Home() {
             {/* Warm invitation */}
             <div className={`mb-16 ${isClient ? 'animate-fade-in-up' : ''}`}>
               <h3 className="text-5xl md:text-6xl font-serif font-bold text-gray-800 mb-6">
-                ¿Listo para disfrutar?
+                Ready to enjoy?
               </h3>
               <p className="text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
-                Nuestro equipo está esperando para prepararte una experiencia culinaria inolvidable.
-                <span className="text-orange-500 font-semibold block mt-2">¡Contáctanos ahora!</span>
+                Our team is waiting to prepare you an unforgettable culinary experience.
+                <span className="text-orange-500 font-semibold block mt-2">Contact us now!</span>
               </p>
 
               {/* Restaurant Address */}
@@ -272,7 +272,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <div className="text-left">
-                    <div className="font-semibold text-lg">Nuestra ubicación</div>
+                    <div className="font-semibold text-lg">Our location</div>
                     <div className="text-gray-600">70 Washington Ave</div>
                     <div className="text-gray-600">Portland, ME 04101, USA</div>
                   </div>
@@ -293,7 +293,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <div className="text-left">
-                    <div className="font-semibold text-xl text-gray-800">Llamar ahora</div>
+                    <div className="font-semibold text-xl text-gray-800">Call now</div>
                     <div className="text-orange-500 font-bold text-lg">+1 (207) 536-0016</div>
                     <div className="text-gray-500 text-sm">70 Washington Ave, Portland, ME</div>
                   </div>
@@ -314,8 +314,8 @@ export default function Home() {
                   </div>
                   <div className="text-left">
                     <div className="font-semibold text-xl">WhatsApp</div>
-                    <div className="text-green-100 font-bold text-lg">Mensaje directo</div>
-                    <div className="text-green-200 text-sm">Respuesta rápida</div>
+                    <div className="text-green-100 font-bold text-lg">Direct message</div>
+                    <div className="text-green-200 text-sm">Quick response</div>
                   </div>
                 </div>
               </a>
@@ -332,10 +332,10 @@ export default function Home() {
             {/* Section header */}
             <div className={`text-center mb-20 ${isClient ? 'animate-fade-in-up' : ''}`}>
               <h3 className="text-5xl font-serif font-bold text-gray-800 mb-6">
-                Nuestra promesa
+                Our promise
               </h3>
               <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-                Cada platillo cuenta una historia de tradición, calidad y pasión por la cocina
+                Every dish tells a story of tradition, quality and passion for cooking
               </p>
             </div>
 
@@ -363,10 +363,10 @@ export default function Home() {
                     {/* Text content */}
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-orange-600 transition-colors duration-300">
-                        Ingredientes frescos
+                        Fresh ingredients
                       </h4>
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        Seleccionamos cuidadosamente cada ingrediente para garantizar la máxima frescura y sabor en cada bocado
+                        We carefully select each ingredient to ensure maximum freshness and flavor in every bite
                       </p>
                     </div>
 
@@ -397,10 +397,10 @@ export default function Home() {
                     {/* Text content */}
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-green-600 transition-colors duration-300">
-                        Tiempo de calidad
+                        Quality time
                       </h4>
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        Nuestros platillos se preparan en 20-25 minutos, el tiempo perfecto para que cada ingrediente desarrolle su sabor completo
+                        Our dishes are prepared in 20-25 minutes, the perfect time for each ingredient to develop its full flavor
                       </p>
                     </div>
 
@@ -431,10 +431,10 @@ export default function Home() {
                     {/* Text content */}
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-gray-600 transition-colors duration-300">
-                        Experiencia familiar
+                        Family experience
                       </h4>
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        Disfruta de un ambiente acogedor donde cada cliente es tratado como parte de nuestra familia
+                        Enjoy a welcoming atmosphere where every customer is treated like part of our family
                       </p>
                     </div>
 
@@ -452,7 +452,7 @@ export default function Home() {
       <a
         href="tel:+12075360016"
         className="fixed bottom-28 right-6 w-16 h-16 bg-orange-500 hover:bg-orange-600 text-white rounded-full organic-shadow hover:organic-shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-50"
-        aria-label="Llamar al restaurante"
+        aria-label="Call the restaurant"
       >
         <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
           <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
@@ -464,7 +464,7 @@ export default function Home() {
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 w-16 h-16 bg-green-500 hover:bg-green-600 text-white rounded-full organic-shadow hover:organic-shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-50"
-        aria-label="Escribir por WhatsApp"
+        aria-label="Send WhatsApp message"
       >
         <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
