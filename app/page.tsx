@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FaUtensils, FaTruck, FaHistory, FaCalendarCheck, FaMapMarkerAlt, FaShieldAlt } from "react-icons/fa";
+import { FaUtensils, FaTruck, FaHistory, FaCalendarCheck, FaMapMarkerAlt, FaShieldAlt, FaClock } from "react-icons/fa";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -168,6 +168,14 @@ export default function Home() {
                     </span>
                     <span className="ml-3">Secure Payments</span>
                   </div>
+
+                  {/* Scheduled Orders */}
+                  <div className="flex items-center h-12 pl-4 pr-4 bg-amber-300 text-orange-900 font-extrabold uppercase text-sm tracking-wider rounded-lg shadow">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaClock className="text-sm" />
+                    </span>
+                    <span className="ml-3">Scheduled Orders</span>
+                  </div>
                 </div>
 
                 {/* Desktop/Tablet: Horizontal row with decorative elements */}
@@ -218,6 +226,16 @@ export default function Home() {
                       <FaMapMarkerAlt className="text-[11px]" />
                     </span>
                     <span className="ml-2">Multiple Addresses</span>
+                    <span className="absolute top-1/2 -right-4 -translate-y-1/2 w-0 h-0 border-y-[20px] border-y-transparent border-l-[14px] border-l-amber-300" />
+                  </div>
+                  <div className="w-0 h-0 border-y-[16px] border-y-transparent border-l-[12px] border-l-orange-600" />
+
+                  {/* Scheduled Orders */}
+                  <div className="relative flex items-center h-10 pl-4 pr-6 bg-amber-300 text-orange-900 font-extrabold uppercase text-[10px] tracking-wider shadow min-w-[140px] lg:min-w-[160px]">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaClock className="text-[11px]" />
+                    </span>
+                    <span className="ml-2">Scheduled Orders</span>
                     <span className="absolute top-1/2 -right-4 -translate-y-1/2 w-0 h-0 border-y-[20px] border-y-transparent border-l-[14px] border-l-amber-300" />
                   </div>
                   <div className="w-0 h-0 border-y-[16px] border-y-transparent border-l-[12px] border-l-orange-600" />
