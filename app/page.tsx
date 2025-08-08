@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { FaUtensils, FaTruck, FaHistory, FaCalendarCheck, FaMapMarkerAlt, FaShieldAlt } from "react-icons/fa";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -103,6 +104,144 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-stone-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="w-full flex flex-col items-center justify-center rounded-2xl py-8 sm:py-12 px-2 sm:px-4 ">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#6B2C2C] mb-4 sm:mb-6 text-center">WHAT&apos;S NEW AT TUCASA</h2>
+
+              {/* Benefits ribbon - responsive grid layout */}
+              <div className="w-full max-w-4xl">
+                {/* Mobile: Full-width cards in a column */}
+                <div className="grid grid-cols-1 gap-3 sm:hidden">
+                  {/* Varied Menu */}
+                  <div className="flex items-center h-12 pl-4 pr-4 bg-amber-300 text-orange-900 font-extrabold uppercase text-sm tracking-wider rounded-lg shadow">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaUtensils className="text-sm" />
+                    </span>
+                    <span className="ml-3">Varied Menu</span>
+                  </div>
+
+                  {/* Tracking */}
+                  <div className="flex items-center h-12 pl-4 pr-4 bg-amber-300 text-orange-900 font-extrabold uppercase text-sm tracking-wider rounded-lg shadow">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaTruck className="text-sm" />
+                    </span>
+                    <span className="ml-3">Tracking</span>
+                  </div>
+
+                  {/* Order History */}
+                  <div className="flex items-center h-12 pl-4 pr-4 bg-amber-300 text-orange-900 font-extrabold uppercase text-sm tracking-wider rounded-lg shadow">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaHistory className="text-sm" />
+                    </span>
+                    <span className="ml-3">Order History</span>
+                  </div>
+
+                  {/* Table Reservations */}
+                  <div className="flex items-center h-12 pl-4 pr-4 bg-amber-300 text-orange-900 font-extrabold uppercase text-sm tracking-wider rounded-lg shadow">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaCalendarCheck className="text-sm" />
+                    </span>
+                    <span className="ml-3">Table Reservations</span>
+                  </div>
+
+                  {/* Multiple Addresses */}
+                  <div className="flex items-center h-12 pl-4 pr-4 bg-amber-300 text-orange-900 font-extrabold uppercase text-sm tracking-wider rounded-lg shadow">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaMapMarkerAlt className="text-sm" />
+                    </span>
+                    <span className="ml-3">Multiple Addresses</span>
+                  </div>
+
+                  {/* Secure Payments */}
+                  <div className="flex items-center h-12 pl-4 pr-4 bg-amber-300 text-orange-900 font-extrabold uppercase text-sm tracking-wider rounded-lg shadow">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaShieldAlt className="text-sm" />
+                    </span>
+                    <span className="ml-3">Secure Payments</span>
+                  </div>
+                </div>
+
+                {/* Desktop/Tablet: Horizontal row with decorative elements */}
+                <div className="hidden sm:flex items-center justify-center gap-0">
+                  {/* Varied Menu */}
+                  <div className="relative flex items-center h-10 pl-4 pr-6 bg-amber-300 text-orange-900 font-extrabold uppercase text-[10px] tracking-wider rounded-l-md shadow min-w-[140px] lg:min-w-[160px]">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaUtensils className="text-[11px]" />
+                    </span>
+                    <span className="ml-2">Varied Menu</span>
+                    <span className="absolute top-1/2 -right-4 -translate-y-1/2 w-0 h-0 border-y-[20px] border-y-transparent border-l-[14px] border-l-amber-300" />
+                  </div>
+                  <div className="w-0 h-0 border-y-[16px] border-y-transparent border-l-[12px] border-l-orange-600" />
+
+                  {/* Tracking */}
+                  <div className="relative flex items-center h-10 pl-4 pr-6 bg-amber-300 text-orange-900 font-extrabold uppercase text-[10px] tracking-wider shadow min-w-[140px] lg:min-w-[160px]">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaTruck className="text-[11px]" />
+                    </span>
+                    <span className="ml-2">Tracking</span>
+                    <span className="absolute top-1/2 -right-4 -translate-y-1/2 w-0 h-0 border-y-[20px] border-y-transparent border-l-[14px] border-l-amber-300" />
+                  </div>
+                  <div className="w-0 h-0 border-y-[16px] border-y-transparent border-l-[12px] border-l-orange-600" />
+
+                  {/* Order History */}
+                  <div className="relative flex items-center h-10 pl-4 pr-6 bg-amber-300 text-orange-900 font-extrabold uppercase text-[10px] tracking-wider shadow min-w-[140px] lg:min-w-[160px]">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaHistory className="text-[11px]" />
+                    </span>
+                    <span className="ml-2">Order History</span>
+                    <span className="absolute top-1/2 -right-4 -translate-y-1/2 w-0 h-0 border-y-[20px] border-y-transparent border-l-[14px] border-l-amber-300" />
+                  </div>
+                  <div className="w-0 h-0 border-y-[16px] border-y-transparent border-l-[12px] border-l-orange-600" />
+
+                  {/* Table Reservations */}
+                  <div className="relative flex items-center h-10 pl-4 pr-6 bg-amber-300 text-orange-900 font-extrabold uppercase text-[10px] tracking-wider shadow min-w-[140px] lg:min-w-[160px]">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaCalendarCheck className="text-[11px]" />
+                    </span>
+                    <span className="ml-2">Table Reservations</span>
+                    <span className="absolute top-1/2 -right-4 -translate-y-1/2 w-0 h-0 border-y-[20px] border-y-transparent border-l-[14px] border-l-amber-300" />
+                  </div>
+                  <div className="w-0 h-0 border-y-[16px] border-y-transparent border-l-[12px] border-l-orange-600" />
+
+                  {/* Multiple Addresses */}
+                  <div className="relative flex items-center h-10 pl-4 pr-6 bg-amber-300 text-orange-900 font-extrabold uppercase text-[10px] tracking-wider shadow min-w-[140px] lg:min-w-[160px]">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaMapMarkerAlt className="text-[11px]" />
+                    </span>
+                    <span className="ml-2">Multiple Addresses</span>
+                    <span className="absolute top-1/2 -right-4 -translate-y-1/2 w-0 h-0 border-y-[20px] border-y-transparent border-l-[14px] border-l-amber-300" />
+                  </div>
+                  <div className="w-0 h-0 border-y-[16px] border-y-transparent border-l-[12px] border-l-orange-600" />
+
+                  {/* Secure Payments */}
+                  <div className="relative flex items-center h-10 pl-4 pr-4 bg-amber-300 text-orange-900 font-extrabold uppercase text-[10px] tracking-wider rounded-r-md shadow min-w-[140px] lg:min-w-[160px]">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-orange-900 border border-orange-200">
+                      <FaShieldAlt className="text-[11px]" />
+                    </span>
+                    <span className="ml-2">Secure Payments</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* JOIN NOW button */}
+              <div className="mt-4 sm:mt-6 w-full flex justify-center px-2">
+                <a
+                  href="https://online.tucasarestaurantes.com/register"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white font-black tracking-wider uppercase text-base sm:text-lg px-8 sm:px-12 py-3 sm:py-3.5 rounded-md shadow-[0_8px_20px_rgba(194,65,12,0.35)] transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black w-full sm:w-auto"
+                >
+                  JOIN NOW!
+                </a>
               </div>
             </div>
           </div>
