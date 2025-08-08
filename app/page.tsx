@@ -68,7 +68,7 @@ export default function Home() {
 
                   <div className="flex gap-4">
                     <a
-                      href="https://fromtherestaurant.com/tu-casa/menu/70-Washington-Ave/"
+                      href="https://online.tucasarestaurantes.com/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg"
