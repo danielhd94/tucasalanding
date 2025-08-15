@@ -6,10 +6,31 @@ import { FaUtensils, FaTruck, FaHistory, FaCalendarCheck, FaMapMarkerAlt, FaShie
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+  const sliderImages = [
+    "/slider/Plato montanero.png",
+    "/slider/Plato montanero (2).png",
+    "/slider/Plato montanero (3).png",
+    "/slider/Plato montanero (4).png",
+    "/slider/Plato montanero (5).png",
+    "/slider/Plato montanero (6).png",
+    "/slider/Plato montanero (7).png",
+    "/slider/Plato montanero (8).png",
+    "/slider/Plato montanero (9).png",
+  ];
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (!sliderImages.length) return;
+    const intervalId = setInterval(() => {
+      setCurrentSlideIndex((prev) => (prev + 1) % sliderImages.length);
+    }, 3500);
+    return () => clearInterval(intervalId);
+  }, [sliderImages.length]);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 via-stone-50 to-gray-100">
@@ -77,16 +98,21 @@ export default function Home() {
                   {/* Soft shadow behind image */}
                   <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-green-300/20 rounded-3xl blur-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
 
-                  {/* Main food image */}
+                  {/* Main food image - Slider */}
                   <div className="relative bg-white rounded-3xl p-6 organic-shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
-                    <Image
-                      src="/hero.jpg"
-                      alt="Delicious food from Tu Casa Restaurants"
-                      width={600}
-                      height={500}
-                      className="rounded-2xl object-cover w-full h-[400px] md:h-[500px] transition-all duration-500 group-hover:scale-105"
-                      priority
-                    />
+                    <div className="relative rounded-2xl overflow-hidden w-full h-[400px] md:h-[500px]">
+                      {sliderImages.map((src, index) => (
+                        <Image
+                          key={src}
+                          src={src}
+                          alt="Delicious food from Tu Casa Restaurants"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 600px"
+                          className={`object-cover transition-opacity duration-700 ease-in-out ${index === currentSlideIndex ? 'opacity-100' : 'opacity-0'}`}
+                          priority={index === 0}
+                        />
+                      ))}
+                    </div>
 
                     {/* Organic floating elements */}
                     <div className={`absolute -top-4 -right-4 bg-orange-500 text-white px-6 py-3 rounded-full font-semibold text-sm organic-shadow transform rotate-12 flex items-center gap-2 ${isClient ? 'animate-bounce' : ''}`}>
