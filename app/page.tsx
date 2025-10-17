@@ -3,10 +3,22 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaUtensils, FaTruck, FaHistory, FaCalendarCheck, FaMapMarkerAlt, FaShieldAlt, FaClock } from "react-icons/fa";
+import { Coffee, ShoppingCart, UtensilsCrossed, Sunset } from "lucide-react";
 
 export default function Home() {
-  const [isClient, setIsClient] = useState(false);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Contact information constants
+  const contactInfo = {
+    phone: "+12075360016",
+    phoneFormatted: "+1 (207) 536-0016",
+    whatsapp: "+12076305414",
+    whatsappFormatted: "+1 (207) 630-5414",
+    address: "70 Washington Ave",
+    city: "Portland, ME 04101, USA",
+    fullAddress: "70 Washington Ave, Portland, ME 04101, USA"
+  };
 
   const sliderImages = [
     "/slider/Plato montanero.png",
@@ -21,16 +33,16 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    setIsClient(true);
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    if (!sliderImages.length) return;
+    if (!isMounted || !sliderImages.length) return;
     const intervalId = setInterval(() => {
       setCurrentSlideIndex((prev) => (prev + 1) % sliderImages.length);
     }, 3500);
     return () => clearInterval(intervalId);
-  }, [sliderImages.length]);
+  }, [isMounted, sliderImages.length]);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 via-stone-50 to-gray-100">
@@ -38,9 +50,9 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Organic background shapes */}
         <div className="absolute inset-0 opacity-20">
-          <div className={`absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full blur-3xl ${isClient ? 'animate-pulse' : ''}`}></div>
-          <div className={`absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-green-200 to-emerald-200 rounded-full blur-3xl ${isClient ? 'animate-pulse' : ''}`}></div>
-          <div className={`absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-br from-gray-200 to-stone-200 rounded-full blur-2xl ${isClient ? 'animate-pulse' : ''}`}></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-green-200 to-emerald-200 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-br from-gray-200 to-stone-200 rounded-full blur-2xl animate-pulse"></div>
         </div>
 
         <div className="relative container mx-auto px-6 py-20 z-10">
@@ -50,7 +62,7 @@ export default function Home() {
               {/* Left side - Text content */}
               <div className="text-center lg:text-left space-y-10">
                 {/* Restaurant name with elegant typography */}
-                <div className={`space-y-6 ${isClient ? 'animate-fade-in-up' : ''}`}>
+                <div className="space-y-6 animate-fade-in-up">
                   <h1 className="text-7xl md:text-9xl font-serif font-bold text-gray-800 leading-none">
                     Tu casa
                   </h1>
@@ -59,41 +71,68 @@ export default function Home() {
                   </h2>
                 </div>
 
-                {/* Elegant slogan */}
-                <div className={`relative ${isClient ? 'animate-fade-in-up' : ''}`}>
-                  <p className="text-2xl md:text-3xl text-gray-700 font-light leading-relaxed">
-                    <span className="text-orange-500 font-serif italic text-4xl">&ldquo;</span>
+                {/* SEO-optimized headline */}
+                <div className="relative animate-fade-in-up">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                    Authentic Salvadoran Food in Portland, ME
+                  </h3>
+                  <p className="text-xl md:text-2xl text-gray-700 font-light leading-relaxed">
+                    <span className="text-orange-500 font-serif italic text-3xl">&ldquo;</span>
                     The taste of home
-                    <span className="text-orange-500 font-serif italic text-4xl">&rdquo;</span>
+                    <span className="text-orange-500 font-serif italic text-3xl">&rdquo;</span>
                   </p>
-                  <p className="text-xl md:text-2xl text-gray-600 font-light italic mt-2">
-                    Hecho con amor
+                  <p className="text-lg md:text-xl text-gray-600 font-light italic mt-2">
+                    Made with love
                   </p>
                   <div className="absolute -bottom-2 left-1/2 lg:left-0 transform -translate-x-1/2 lg:translate-x-0 w-24 h-1 bg-gradient-to-r from-orange-500 to-green-500 rounded-full"></div>
                 </div>
 
+
+                {/* Meal time indicators */}
+                <div className="flex justify-center lg:justify-start items-center gap-4 mb-6 animate-fade-in-up">
+                  {/* Breakfast */}
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center organic-shadow">
+                      <Coffee className="w-6 h-6 text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-600">Breakfast</span>
+                  </div>
+
+                  {/* Lunch */}
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center organic-shadow">
+                      <UtensilsCrossed className="w-6 h-6 text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-600">Lunch</span>
+                  </div>
+
+                  {/* Dinner */}
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center organic-shadow">
+                      <Sunset className="w-6 h-6 text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-600">Dinner</span>
+                  </div>
+                </div>
+
                 {/* Organic action buttons */}
-                <div className={`flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center pt-8 ${isClient ? 'animate-fade-in-up' : ''}`}>
+                <div className="flex justify-center lg:justify-start items-center pt-2 animate-fade-in-up">
                   <a
-                    href="https://menu.tucasarestaurantes.com/"
+                    href="https://online.tucasarestaurantes.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-12 py-6 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg min-w-[280px]"
+                    className="group relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-12 py-6 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg min-w-[280px]"
                   >
-                    <span className="flex items-center justify-center gap-3">
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-.78-.78-2.05-.78-2.83 0-.78.78-.78 2.05 0 2.83l7.02 7.01zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.20-1.10-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41-6.51-6.75z" />
-                      </svg>
-                      View our menu
+                    <span className="flex items-center justify-center gap-2">
+                      <ShoppingCart className="w-5 h-5" />
+                      Order now
                     </span>
                   </a>
-
-
                 </div>
               </div>
 
               {/* Right side - Food showcase */}
-              <div className={`relative ${isClient ? 'animate-fade-in-up' : ''}`}>
+              <div className="relative animate-fade-in-up">
                 <div className="relative group">
                   {/* Soft shadow behind image */}
                   <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-green-300/20 rounded-3xl blur-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
@@ -101,28 +140,41 @@ export default function Home() {
                   {/* Main food image - Slider */}
                   <div className="relative bg-white rounded-3xl p-6 organic-shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
                     <div className="relative rounded-2xl overflow-hidden w-full h-[400px] md:h-[500px]">
-                      {sliderImages.map((src, index) => (
+                      {isMounted ? (
+                        sliderImages.map((src, index) => (
+                          <Image
+                            key={src}
+                            src={src}
+                            alt="Authentic Salvadoran food - Pupusas, traditional dishes and more at Tu Casa Restaurantes Portland ME"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 600px"
+                            className={`object-cover transition-opacity duration-700 ease-in-out ${index === currentSlideIndex ? 'opacity-100' : 'opacity-0'}`}
+                            priority={index === 0}
+                            quality={85}
+                          />
+                        ))
+                      ) : (
                         <Image
-                          key={src}
-                          src={src}
-                          alt="Delicious food from Tu Casa Restaurants"
+                          src={sliderImages[0]}
+                          alt="Authentic Salvadoran food - Pupusas, traditional dishes and more at Tu Casa Restaurantes Portland ME"
                           fill
                           sizes="(max-width: 768px) 100vw, 600px"
-                          className={`object-cover transition-opacity duration-700 ease-in-out ${index === currentSlideIndex ? 'opacity-100' : 'opacity-0'}`}
-                          priority={index === 0}
+                          className="object-cover"
+                          priority
+                          quality={85}
                         />
-                      ))}
+                      )}
                     </div>
 
                     {/* Organic floating elements */}
-                    <div className={`absolute -top-4 -right-4 bg-orange-500 text-white px-6 py-3 rounded-full font-semibold text-sm organic-shadow transform rotate-12 flex items-center gap-2 ${isClient ? 'animate-bounce' : ''}`}>
+                    <div className="absolute -top-4 -right-4 bg-orange-500 text-white px-6 py-3 rounded-full font-semibold text-sm organic-shadow transform rotate-12 flex items-center gap-2 animate-bounce">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
                       Chef&apos;s Special!
                     </div>
 
-                    <div className={`absolute -bottom-3 -left-3 bg-green-600 text-white px-4 py-2 rounded-full font-medium text-xs organic-shadow transform -rotate-12 flex items-center gap-2 ${isClient ? 'animate-pulse' : ''}`}>
+                    <div className="absolute -bottom-3 -left-3 bg-green-600 text-white px-4 py-2 rounded-full font-medium text-xs organic-shadow transform -rotate-12 flex items-center gap-2 animate-pulse">
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
                       </svg>
@@ -135,6 +187,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* Benefits Section */}
       <section className="py-16 bg-gradient-to-b from-gray-50 to-stone-50">
@@ -292,13 +345,74 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* How It Works Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                How to Order in 3 Simple Steps
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Get your favorite Salvadoran food quickly and easily
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Step 1 */}
+              <div className="text-center">
+                <div className="relative mb-8">
+                  <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl font-bold text-white">1</span>
+                  </div>
+                  <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-orange-500 to-transparent transform translate-x-10"></div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">Choose Your Food</h3>
+                <p className="text-gray-600 text-lg">
+                  Browse our online menu or call to see our options. From pupusas to complete dishes.
+                </p>
+              </div>
+
+              {/* Step 2 */}
+              <div className="text-center">
+                <div className="relative mb-8">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl font-bold text-white">2</span>
+                  </div>
+                  <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-green-500 to-transparent transform translate-x-10"></div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">Place Your Order</h3>
+                <p className="text-gray-600 text-lg">
+                  Order online with a few clicks or call {contactInfo.phoneFormatted}. We accept all forms of payment.
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="text-center">
+                <div className="relative mb-8">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl font-bold text-white">3</span>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">Enjoy!</h3>
+                <p className="text-gray-600 text-lg">
+                  Your food is prepared in 20-25 minutes. Delivery or pickup available.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section with warm feeling */}
       <section className="py-24 bg-gradient-to-b from-stone-50 to-gray-50">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-4xl mx-auto">
 
             {/* Warm invitation */}
-            <div className={`mb-16 ${isClient ? 'animate-fade-in-up' : ''}`}>
+            <div className="mb-16 animate-fade-in-up">
               <h3 className="text-5xl md:text-6xl font-serif font-bold text-gray-800 mb-6">
                 Ready to enjoy?
               </h3>
@@ -317,17 +431,17 @@ export default function Home() {
                   </div>
                   <div className="text-left">
                     <div className="font-semibold text-lg">Our location</div>
-                    <div className="text-gray-600">70 Washington Ave</div>
-                    <div className="text-gray-600">Portland, ME 04101, USA</div>
+                    <div className="text-gray-600">{contactInfo.address}</div>
+                    <div className="text-gray-600">{contactInfo.city}</div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Contact options with restaurant feel */}
-            <div className={`flex flex-col md:flex-row gap-8 justify-center items-center ${isClient ? 'animate-fade-in-up' : ''}`}>
+            <div className="flex flex-col md:flex-row gap-8 justify-center items-center animate-fade-in-up">
               <a
-                href="tel:+12075360016"
+                href={`tel:${contactInfo.phone}`}
                 className="group relative bg-white hover:bg-gray-50 text-gray-800 px-10 py-8 rounded-2xl transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg min-w-[320px]"
               >
                 <div className="flex items-center gap-6">
@@ -338,14 +452,14 @@ export default function Home() {
                   </div>
                   <div className="text-left">
                     <div className="font-semibold text-xl text-gray-800">Call now</div>
-                    <div className="text-orange-500 font-bold text-lg">+1 (207) 536-0016</div>
-                    <div className="text-gray-500 text-sm">70 Washington Ave, Portland, ME</div>
+                    <div className="text-orange-500 font-bold text-lg">{contactInfo.phoneFormatted}</div>
+                    <div className="text-gray-500 text-sm">{contactInfo.fullAddress}</div>
                   </div>
                 </div>
               </a>
 
               <a
-                href="https://wa.me/12076305414"
+                href={`https://wa.me/${contactInfo.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative bg-green-600 hover:bg-green-700 text-white px-10 py-8 rounded-2xl transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg min-w-[320px]"
@@ -368,18 +482,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why choose us - Restaurant style with improved cards */}
+      {/* Why Choose Tu Casa - Enhanced Promise Section */}
       <section className="py-24 bg-gradient-to-b from-gray-50 to-stone-100">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
 
             {/* Section header */}
-            <div className={`text-center mb-20 ${isClient ? 'animate-fade-in-up' : ''}`}>
-              <h3 className="text-5xl font-serif font-bold text-gray-800 mb-6">
-                Our promise
-              </h3>
-              <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-                Every dish tells a story of tradition, quality and passion for cooking
+            <div className="text-center mb-20 animate-fade-in-up">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                Why Choose Tu Casa?
+              </h2>
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+                More than a restaurant, we are your home away from home. Every dish tells a story of tradition, quality and passion for cooking.
               </p>
             </div>
 
@@ -387,7 +501,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
 
               {/* Feature 1 - Enhanced Card */}
-              <div className={`group ${isClient ? 'animate-fade-in-up' : ''}`}>
+              <div className="group animate-fade-in-up">
                 <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
                   {/* Gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -407,10 +521,10 @@ export default function Home() {
                     {/* Text content */}
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-orange-600 transition-colors duration-300">
-                        Fresh ingredients
+                        Authentic Food
                       </h4>
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        We carefully select each ingredient to ensure maximum freshness and flavor in every bite
+                        Traditional Salvadoran recipes prepared by experienced chefs with carefully selected fresh ingredients
                       </p>
                     </div>
 
@@ -421,7 +535,7 @@ export default function Home() {
               </div>
 
               {/* Feature 2 - Enhanced Card */}
-              <div className={`group ${isClient ? 'animate-fade-in-up' : ''}`}>
+              <div className="group animate-fade-in-up">
                 <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
                   {/* Gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-green-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -441,10 +555,10 @@ export default function Home() {
                     {/* Text content */}
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-green-600 transition-colors duration-300">
-                        Quality time
+                        Fast Preparation
                       </h4>
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        Our dishes are prepared in 20-25 minutes, the perfect time for each ingredient to develop its full flavor
+                        Food prepared in 20-25 minutes. Your order arrives hot and fresh, ready to enjoy with perfect timing
                       </p>
                     </div>
 
@@ -455,7 +569,7 @@ export default function Home() {
               </div>
 
               {/* Feature 3 - Enhanced Card */}
-              <div className={`group ${isClient ? 'animate-fade-in-up' : ''}`}>
+              <div className="group animate-fade-in-up">
                 <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
                   {/* Gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -492,9 +606,106 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-16">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              {/* Restaurant Info */}
+              <div className="lg:col-span-2">
+                <h3 className="text-3xl font-bold mb-4">Tu Casa Restaurantes</h3>
+                <p className="text-gray-300 mb-6 text-lg">
+                  Authentic Salvadoran food in Portland, ME. More than a restaurant, we are your home away from home.
+                </p>
+                {/* Social Media - Temporarily hidden while being created */}
+                {/* <div className="flex space-x-4">
+                  <a
+                    href="https://www.facebook.com/tucasarestaurantes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300"
+                    aria-label="Facebook"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/tucasarestaurantes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300"
+                    aria-label="Instagram"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.281H7.721c-.49 0-.875.385-.875.875v7.558c0 .49.385.875.875.875h8.558c.49 0 .875-.385.875-.875V8.582c0-.49-.385-.875-.875-.875z" />
+                    </svg>
+                  </a>
+                </div> */}
+              </div>
+
+              {/* Hours */}
+              <div>
+                <h4 className="text-xl font-semibold mb-4">Hours</h4>
+                <div className="space-y-2 text-gray-300">
+                  <div className="flex justify-between">
+                    <span>Monday - Sunday</span>
+                    <span>8:00 AM - 9:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Preparation</span>
+                    <span>20-25 min</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact */}
+              <div>
+                <h4 className="text-xl font-semibold mb-4">Contact</h4>
+                <div className="space-y-3 text-gray-300">
+                  <div>
+                    <p className="font-medium">Address</p>
+                    <p>{contactInfo.address}<br />{contactInfo.city}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">Phone</p>
+                    <a href={`tel:${contactInfo.phone}`} className="hover:text-orange-400 transition-colors duration-300">
+                      {contactInfo.phoneFormatted}
+                    </a>
+                  </div>
+                  <div>
+                    <p className="font-medium">WhatsApp</p>
+                    <a href={`https://wa.me/${contactInfo.whatsapp}`} className="hover:text-orange-400 transition-colors duration-300">
+                      {contactInfo.whatsappFormatted}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="border-t border-gray-700 pt-8">
+              <div className="flex flex-col md:flex-row justify-between items-center">
+                <p className="text-gray-400 text-sm mb-4 md:mb-0">
+                  © 2024 Tu Casa Restaurantes. All rights reserved.
+                </p>
+                <div className="flex space-x-6 text-sm">
+                  <a href="/privacy" className="text-gray-400 hover:text-orange-400 transition-colors duration-300">
+                    Privacy Policy
+                  </a>
+                  <a href="/terms" className="text-gray-400 hover:text-orange-400 transition-colors duration-300">
+                    Terms of Service
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
       {/* Floating Action Buttons - Subtle and elegant */}
       <a
-        href="tel:+12075360016"
+        href={`tel:${contactInfo.phone}`}
         className="fixed bottom-28 right-6 w-16 h-16 bg-orange-500 hover:bg-orange-600 text-white rounded-full organic-shadow hover:organic-shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-50"
         aria-label="Call the restaurant"
       >
@@ -504,7 +715,7 @@ export default function Home() {
       </a>
 
       <a
-        href="https://wa.me/12076305414"
+        href={`https://wa.me/${contactInfo.whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 w-16 h-16 bg-green-500 hover:bg-green-600 text-white rounded-full organic-shadow hover:organic-shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-50"
