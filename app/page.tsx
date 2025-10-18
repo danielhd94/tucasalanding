@@ -4,46 +4,33 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaUtensils, FaTruck, FaHistory, FaCalendarCheck, FaMapMarkerAlt, FaShieldAlt, FaClock } from "react-icons/fa";
 import { Coffee, ShoppingCart, UtensilsCrossed, Sunset } from "lucide-react";
+import { BUSINESS_INFO, SLIDER_IMAGES } from "../lib/constants";
 
 export default function Home() {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
-  // Contact information constants
-  const contactInfo = {
-    phone: "+12075360016",
-    phoneFormatted: "+1 (207) 536-0016",
-    whatsapp: "+12076305414",
-    whatsappFormatted: "+1 (207) 630-5414",
-    address: "70 Washington Ave",
-    city: "Portland, ME 04101, USA",
-    fullAddress: "70 Washington Ave, Portland, ME 04101, USA"
-  };
-
-  const sliderImages = [
-    "/slider/Plato montanero.png",
-    "/slider/Plato montanero (2).png",
-    "/slider/Plato montanero (3).png",
-    "/slider/Plato montanero (4).png",
-    "/slider/Plato montanero (5).png",
-    "/slider/Plato montanero (6).png",
-    "/slider/Plato montanero (7).png",
-    "/slider/Plato montanero (8).png",
-    "/slider/Plato montanero (9).png",
-  ];
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Slider automático con ciclo infinito
   useEffect(() => {
-    if (!isMounted || !sliderImages.length) return;
+    if (!isMounted || !SLIDER_IMAGES.length) return;
+
     const intervalId = setInterval(() => {
-      setCurrentSlideIndex((prev) => (prev + 1) % sliderImages.length);
-    }, 3500);
+      setCurrentSlideIndex((prev) => {
+        // Ciclo infinito: cuando llega al final, vuelve al inicio (0)
+        const nextIndex = (prev + 1) % SLIDER_IMAGES.length;
+        return nextIndex;
+      });
+    }, 3000); // Cambio cada 3 segundos
+
     return () => clearInterval(intervalId);
-  }, [isMounted, sliderImages.length]);
+  }, [isMounted]);
+
 
   // Parallax scroll effect with throttling
   useEffect(() => {
@@ -64,7 +51,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-stone-50 to-gray-100">
       {/* Hero Section */}
       <section id="about" className="relative h-screen flex items-center overflow-hidden border-0">
         {/* Enhanced background overlay for better contrast */}
@@ -92,80 +79,80 @@ export default function Home() {
           ></div>
         </div>
 
-        <div className="relative container mx-auto px-6 py-16 z-10">
+        <div className="relative container mx-auto px-4 sm:px-6 pt-8 pb-12 sm:py-16 z-10">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
 
               {/* Left side - Text content */}
               <div
-                className="text-center lg:text-left space-y-8"
+                className="text-center lg:text-left space-y-6 sm:space-y-8"
                 style={{
                   transform: `translateY(${scrollY * 0.3}px)`
                 }}
               >
                 {/* Restaurant name with enhanced contrast */}
-                <div className="space-y-4">
-                  <h1 className="text-6xl md:text-8xl font-playfair font-bold text-white leading-none tracking-tight drop-shadow-2xl">
+                <div className="space-y-2 sm:space-y-4">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-playfair font-bold text-white leading-none tracking-tight drop-shadow-2xl">
                     Tu Casa
                   </h1>
-                  <h2 className="text-2xl md:text-4xl font-montserrat font-light text-orange-300 italic -mt-4 drop-shadow-lg">
-                    Restaurantes
+                  <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-montserrat font-light text-orange-300 italic -mt-2 sm:-mt-3 md:-mt-4 drop-shadow-lg">
+                    Restaurants
                   </h2>
                 </div>
 
                 {/* Enhanced headline with better contrast */}
-                <div className="space-y-4">
-                  <h3 className="text-2xl md:text-3xl font-montserrat font-medium text-white leading-relaxed drop-shadow-lg">
+                <div className="space-y-3 sm:space-y-4">
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-montserrat font-medium text-white leading-relaxed drop-shadow-lg">
                     Authentic Salvadoran Food in Portland, ME
                   </h3>
-                  <div className="space-y-4">
-                    <p className="text-xl md:text-2xl text-orange-200 font-medium leading-relaxed drop-shadow-md">
-                      <span className="text-orange-300 font-playfair italic text-3xl">&ldquo;</span>
+                  <div className="space-y-3 sm:space-y-4">
+                    <p className="text-lg sm:text-xl md:text-2xl text-orange-200 font-medium leading-relaxed drop-shadow-md">
+                      <span className="text-orange-300 font-playfair italic text-2xl sm:text-3xl">&ldquo;</span>
                       The taste of home
-                      <span className="text-orange-300 font-playfair italic text-3xl">&rdquo;</span>
+                      <span className="text-orange-300 font-playfair italic text-2xl sm:text-3xl">&rdquo;</span>
                     </p>
-                    <p className="text-lg md:text-xl text-gray-100 font-opensans font-medium italic drop-shadow-md">
+                    <p className="text-base sm:text-lg md:text-xl text-gray-100 font-opensans font-medium italic drop-shadow-md">
                       Made with love and tradition
                     </p>
                   </div>
-                  <div className="w-24 h-1 bg-gradient-to-r from-orange-300 to-orange-200 rounded-full shadow-lg"></div>
+                  <div className="w-24 h-1 bg-gradient-to-r from-orange-200 to-orange-100 rounded-full shadow-lg"></div>
                 </div>
 
 
                 {/* Enhanced meal time indicators */}
-                <div className="flex justify-center lg:justify-start items-center gap-8">
+                <div className="flex justify-center lg:justify-start items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8">
                   {/* Breakfast */}
                   <div className="flex flex-col items-center gap-3">
-                    <div className="w-14 h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50 shadow-lg">
-                      <Coffee className="w-7 h-7 text-orange-100" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50 shadow-lg">
+                      <Coffee className="w-6 h-6 sm:w-7 sm:h-7 text-orange-100" />
                     </div>
                     <span className="text-sm font-montserrat font-semibold text-white drop-shadow-md">Breakfast</span>
                   </div>
 
                   {/* Lunch */}
                   <div className="flex flex-col items-center gap-3">
-                    <div className="w-14 h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50 shadow-lg">
-                      <UtensilsCrossed className="w-7 h-7 text-orange-100" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50 shadow-lg">
+                      <UtensilsCrossed className="w-6 h-6 sm:w-7 sm:h-7 text-orange-100" />
                     </div>
                     <span className="text-sm font-montserrat font-semibold text-white drop-shadow-md">Lunch</span>
                   </div>
 
                   {/* Dinner */}
                   <div className="flex flex-col items-center gap-3">
-                    <div className="w-14 h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50 shadow-lg">
-                      <Sunset className="w-7 h-7 text-orange-100" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50 shadow-lg">
+                      <Sunset className="w-6 h-6 sm:w-7 sm:h-7 text-orange-100" />
                     </div>
                     <span className="text-sm font-montserrat font-semibold text-white drop-shadow-md">Dinner</span>
                   </div>
                 </div>
 
                 {/* Enhanced action button */}
-                <div className="flex justify-center lg:justify-start items-center pt-8">
+                <div className="flex justify-center lg:justify-start items-center pt-6 sm:pt-8">
                   <a
                     href="https://online.tucasarestaurantes.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative bg-gradient-to-r from-orange-500 to-orange-600 border-2 border-orange-400 text-white px-10 py-4 rounded-full text-lg font-montserrat font-semibold transition-all duration-300 hover:from-orange-600 hover:to-orange-700 hover:border-orange-500 shadow-xl hover:shadow-2xl min-w-[240px]"
+                    className="group relative bg-gradient-to-r from-orange-400 to-orange-500 border-2 border-orange-300 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-montserrat font-semibold transition-all duration-300 hover:from-orange-500 hover:to-orange-600 hover:border-orange-400 shadow-xl hover:shadow-2xl w-full sm:w-auto sm:min-w-[200px] md:min-w-[240px]"
                   >
                     <span className="flex items-center justify-center gap-3">
                       <ShoppingCart className="w-5 h-5" />
@@ -190,21 +177,21 @@ export default function Home() {
                   <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 transform -rotate-1 group-hover:rotate-0 transition-all duration-700">
                     <div className="relative rounded-2xl overflow-hidden w-full h-[400px] md:h-[500px]">
                       {isMounted ? (
-                        sliderImages.map((src, index) => (
+                        SLIDER_IMAGES.map((src, index) => (
                           <Image
                             key={src}
                             src={src}
                             alt="Authentic Salvadoran food - Pupusas, traditional dishes and more at Tu Casa Restaurantes Portland ME"
                             fill
                             sizes="(max-width: 768px) 100vw, 600px"
-                            className={`object-cover transition-opacity duration-700 ease-in-out ${index === currentSlideIndex ? 'opacity-100' : 'opacity-0'}`}
+                            className={`object-cover transition-all duration-1000 ease-in-out ${index === currentSlideIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
                             priority={index === 0}
                             quality={85}
                           />
                         ))
                       ) : (
                         <Image
-                          src={sliderImages[0]}
+                          src={SLIDER_IMAGES[0]}
                           alt="Authentic Salvadoran food - Pupusas, traditional dishes and more at Tu Casa Restaurantes Portland ME"
                           fill
                           sizes="(max-width: 768px) 100vw, 600px"
@@ -216,18 +203,33 @@ export default function Home() {
                     </div>
 
                     {/* Enhanced floating elements with better contrast */}
-                    <div className="absolute -top-6 -right-6 bg-gradient-to-r from-orange-500 to-orange-600 border-2 border-orange-400 text-white px-6 py-3 rounded-full font-montserrat font-semibold text-sm transform rotate-12 flex items-center gap-2 shadow-xl">
+                    <div className="absolute -top-3 -right-3 sm:-top-6 sm:-right-6 bg-gradient-to-r from-orange-400 to-orange-500 border-2 border-orange-300 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full font-montserrat font-semibold text-xs sm:text-sm transform rotate-12 flex items-center gap-1 sm:gap-2 shadow-xl">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
                       Chef&apos;s Special
                     </div>
 
-                    <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-green-500 to-green-600 border-2 border-green-400 text-white px-4 py-2 rounded-full font-montserrat font-semibold text-xs transform -rotate-12 flex items-center gap-2 shadow-xl">
+                    <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 bg-gradient-to-r from-green-500 to-green-600 border-2 border-green-400 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full font-montserrat font-semibold text-xs transform -rotate-12 flex items-center gap-1 sm:gap-2 shadow-xl">
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
                       </svg>
                       Fresh ingredients
+                    </div>
+
+                    {/* Slider indicators */}
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                      {SLIDER_IMAGES.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentSlideIndex
+                            ? 'bg-orange-400 scale-125'
+                            : 'bg-white/50 hover:bg-white/70'
+                            }`}
+                          onClick={() => setCurrentSlideIndex(index)}
+                          aria-label={`Go to slide ${index + 1} of ${SLIDER_IMAGES.length}`}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -442,7 +444,7 @@ export default function Home() {
               {/* Step 1 */}
               <div className="text-center">
                 <div className="relative mb-8">
-                  <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-2xl font-bold text-white">1</span>
                   </div>
                   <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-orange-500 to-transparent transform translate-x-10"></div>
@@ -463,7 +465,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-montserrat font-bold text-gray-800 mb-4">Place Your Order</h3>
                 <p className="text-gray-600 text-lg font-opensans">
-                  Order online with a few clicks or call {contactInfo.phoneFormatted}. We accept all forms of payment.
+                  Order online with a few clicks or call {BUSINESS_INFO.phoneFormatted}. We accept all forms of payment.
                 </p>
               </div>
 
@@ -525,8 +527,8 @@ export default function Home() {
                   </div>
                   <div className="text-left">
                     <div className="font-semibold text-lg">Our location</div>
-                    <div className="text-gray-600">{contactInfo.address}</div>
-                    <div className="text-gray-600">{contactInfo.city}</div>
+                    <div className="text-gray-600">{BUSINESS_INFO.address}</div>
+                    <div className="text-gray-600">{BUSINESS_INFO.city}, {BUSINESS_INFO.state} {BUSINESS_INFO.zipCode}</div>
                   </div>
                 </div>
               </div>
@@ -535,25 +537,25 @@ export default function Home() {
             {/* Contact options with restaurant feel */}
             <div className="flex flex-col md:flex-row gap-8 justify-center items-center animate-fade-in-up">
               <a
-                href={`tel:${contactInfo.phone}`}
+                href={`tel:${BUSINESS_INFO.phone}`}
                 className="group relative bg-white hover:bg-gray-50 text-gray-800 px-10 py-8 rounded-2xl transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg min-w-[320px]"
               >
                 <div className="flex items-center gap-6">
-                  <div className="bg-orange-500 p-4 rounded-full organic-shadow">
+                  <div className="bg-orange-400 p-4 rounded-full organic-shadow">
                     <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                     </svg>
                   </div>
                   <div className="text-left">
                     <div className="font-semibold text-xl text-gray-800">Call now</div>
-                    <div className="text-orange-500 font-bold text-lg">{contactInfo.phoneFormatted}</div>
-                    <div className="text-gray-500 text-sm">{contactInfo.fullAddress}</div>
+                    <div className="text-orange-500 font-bold text-lg">{BUSINESS_INFO.phoneFormatted}</div>
+                    <div className="text-gray-500 text-sm">{BUSINESS_INFO.fullAddress}</div>
                   </div>
                 </div>
               </a>
 
               <a
-                href={`https://wa.me/${contactInfo.whatsapp}`}
+                href={`https://wa.me/${BUSINESS_INFO.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative bg-green-600 hover:bg-green-700 text-white px-10 py-8 rounded-2xl transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg min-w-[320px]"
@@ -577,23 +579,23 @@ export default function Home() {
       </section>
 
       {/* Why Choose Tu Casa - Enhanced Promise Section */}
-      <section className="py-24 bg-gradient-to-b from-amber-100 to-orange-200 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-b from-gray-100 to-gray-200 relative overflow-hidden">
         {/* Vibrant parallax background elements */}
         <div className="absolute inset-0 opacity-20">
           <div
-            className="absolute top-1/4 left-1/5 w-88 h-88 bg-gradient-to-br from-orange-400 to-red-500 rounded-full blur-3xl"
+            className="absolute top-1/4 left-1/5 w-88 h-88 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full blur-3xl"
             style={{
               transform: `translateY(${scrollY * 0.2}px) translateX(${scrollY * 0.1}px)`
             }}
           ></div>
           <div
-            className="absolute bottom-1/4 right-1/5 w-72 h-72 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-3xl"
+            className="absolute bottom-1/4 right-1/5 w-72 h-72 bg-gradient-to-br from-green-200 to-green-300 rounded-full blur-3xl"
             style={{
               transform: `translateY(${scrollY * -0.15}px) translateX(${scrollY * -0.1}px)`
             }}
           ></div>
           <div
-            className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full blur-3xl"
+            className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-br from-purple-200 to-purple-300 rounded-full blur-3xl"
             style={{
               transform: `translateY(${scrollY * 0.3}px) translateX(${scrollY * 0.2}px)`
             }}
@@ -616,12 +618,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
 
               {/* Feature 1 - Enhanced Card */}
-              <div
-                className="group animate-fade-in-up"
-                style={{
-                  transform: `translateY(${scrollY * 0.2}px) translateX(${scrollY * 0.1}px)`
-                }}
-              >
+              <div className="group animate-fade-in-up">
                 <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
                   {/* Gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -630,12 +627,12 @@ export default function Home() {
                   <div className="relative z-10">
                     {/* Icon container */}
                     <div className="mb-8">
-                      <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mx-auto flex items-center justify-center organic-shadow group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-20 h-20 bg-gradient-to-br from-orange-300 to-orange-400 rounded-2xl mx-auto flex items-center justify-center organic-shadow group-hover:scale-110 transition-transform duration-300">
                         <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12.5 2C13.81 2 15.29 3.42 15.29 5.14C15.29 6.86 13.81 8.29 12.5 8.29C11.19 8.29 9.71 6.86 9.71 5.14C9.71 3.42 11.19 2 12.5 2ZM21 9V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V9C3 7.9 3.9 7 5 7H8L10 5H14L16 7H19C20.1 7 21 7.9 21 9ZM19 9H16.83L15.83 8H8.17L7.17 9H5V20H19V9ZM12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18ZM12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8Z" />
                         </svg>
                       </div>
-                      <div className="w-12 h-1 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full mx-auto mt-6"></div>
+                      <div className="w-12 h-1 bg-gradient-to-r from-orange-300 to-orange-400 rounded-full mx-auto mt-6"></div>
                     </div>
 
                     {/* Text content */}
@@ -655,12 +652,7 @@ export default function Home() {
               </div>
 
               {/* Feature 2 - Enhanced Card */}
-              <div
-                className="group animate-fade-in-up"
-                style={{
-                  transform: `translateY(${scrollY * -0.15}px) translateX(${scrollY * -0.1}px)`
-                }}
-              >
+              <div className="group animate-fade-in-up">
                 <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
                   {/* Gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-green-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -694,12 +686,7 @@ export default function Home() {
               </div>
 
               {/* Feature 3 - Enhanced Card */}
-              <div
-                className="group animate-fade-in-up"
-                style={{
-                  transform: `translateY(${scrollY * 0.25}px) translateX(${scrollY * 0.15}px)`
-                }}
-              >
+              <div className="group animate-fade-in-up">
                 <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
                   {/* Gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -741,13 +728,13 @@ export default function Home() {
         {/* Parallax background elements */}
         <div className="absolute inset-0 opacity-20">
           <div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl"
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-300 rounded-full blur-3xl"
             style={{
               transform: `translateY(${scrollY * 0.6}px) translateX(${scrollY * 0.4}px) scale(${1 + scrollY * 0.0002}) rotate(${scrollY * 0.1}deg)`
             }}
           ></div>
           <div
-            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-500 rounded-full blur-3xl"
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-300 rounded-full blur-3xl"
             style={{
               transform: `translateY(${scrollY * -0.5}px) translateX(${scrollY * -0.3}px) scale(${1 + scrollY * 0.0001}) rotate(${scrollY * -0.1}deg)`
             }}
@@ -758,7 +745,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
               {/* Restaurant Info */}
               <div className="lg:col-span-2">
-                <h3 className="text-3xl font-bold mb-4">Tu Casa Restaurantes</h3>
+                <h3 className="text-3xl font-bold mb-4">Tu Casa Restaurants</h3>
                 <p className="text-gray-300 mb-6 text-lg">
                   Authentic Salvadoran food in Portland, ME. More than a restaurant, we are your home away from home.
                 </p>
@@ -768,7 +755,7 @@ export default function Home() {
                     href="https://www.facebook.com/tucasarestaurantes"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300"
+                    className="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors duration-300"
                     aria-label="Facebook"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -779,7 +766,7 @@ export default function Home() {
                     href="https://www.instagram.com/tucasarestaurantes"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300"
+                    className="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors duration-300"
                     aria-label="Instagram"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -810,18 +797,18 @@ export default function Home() {
                 <div className="space-y-3 text-gray-300">
                   <div>
                     <p className="font-medium">Address</p>
-                    <p>{contactInfo.address}<br />{contactInfo.city}</p>
+                    <p>{BUSINESS_INFO.address}<br />{BUSINESS_INFO.city}, {BUSINESS_INFO.state} {BUSINESS_INFO.zipCode}</p>
                   </div>
                   <div>
                     <p className="font-medium">Phone</p>
-                    <a href={`tel:${contactInfo.phone}`} className="hover:text-orange-400 transition-colors duration-300">
-                      {contactInfo.phoneFormatted}
+                    <a href={`tel:${BUSINESS_INFO.phone}`} className="hover:text-orange-400 transition-colors duration-300">
+                      {BUSINESS_INFO.phoneFormatted}
                     </a>
                   </div>
                   <div>
                     <p className="font-medium">WhatsApp</p>
-                    <a href={`https://wa.me/${contactInfo.whatsapp}`} className="hover:text-orange-400 transition-colors duration-300">
-                      {contactInfo.whatsappFormatted}
+                    <a href={`https://wa.me/${BUSINESS_INFO.whatsapp}`} className="hover:text-orange-400 transition-colors duration-300">
+                      {BUSINESS_INFO.whatsappFormatted}
                     </a>
                   </div>
                 </div>
@@ -832,7 +819,7 @@ export default function Home() {
             <div className="border-t border-gray-700 pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center">
                 <p className="text-gray-400 text-sm mb-4 md:mb-0">
-                  © 2024 Tu Casa Restaurantes. All rights reserved.
+                  © 2024 Tu Casa Restaurants. All rights reserved.
                 </p>
                 <div className="flex space-x-6 text-sm">
                   <a href="/privacy" className="text-gray-400 hover:text-orange-400 transition-colors duration-300">
@@ -850,23 +837,23 @@ export default function Home() {
 
       {/* Floating Action Buttons - Subtle and elegant */}
       <a
-        href={`tel:${contactInfo.phone}`}
-        className="fixed bottom-28 right-6 w-16 h-16 bg-orange-500 hover:bg-orange-600 text-white rounded-full organic-shadow hover:organic-shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-50"
+        href={`tel:${BUSINESS_INFO.phone}`}
+        className="fixed bottom-24 sm:bottom-28 right-4 sm:right-6 w-14 h-14 sm:w-16 sm:h-16 bg-orange-400 hover:bg-orange-500 text-white rounded-full organic-shadow hover:organic-shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-50"
         aria-label="Call the restaurant"
       >
-        <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 20 20">
           <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
         </svg>
       </a>
 
       <a
-        href={`https://wa.me/${contactInfo.whatsapp}`}
+        href={`https://wa.me/${BUSINESS_INFO.whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 w-16 h-16 bg-green-500 hover:bg-green-600 text-white rounded-full organic-shadow hover:organic-shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-50"
+        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-14 h-14 sm:w-16 sm:h-16 bg-green-400 hover:bg-green-500 text-white rounded-full organic-shadow hover:organic-shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-50"
         aria-label="Send WhatsApp message"
       >
-        <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
         </svg>
       </a>
