@@ -8,6 +8,7 @@ import { Coffee, ShoppingCart, UtensilsCrossed, Sunset } from "lucide-react";
 export default function Home() {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   // Contact information constants
   const contactInfo = {
@@ -44,101 +45,149 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, [isMounted, sliderImages.length]);
 
+  // Parallax scroll effect with throttling
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-stone-50 to-gray-100">
+    <main className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Organic background shapes */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-green-200 to-emerald-200 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-br from-gray-200 to-stone-200 rounded-full blur-2xl animate-pulse"></div>
+      <section id="about" className="relative h-screen flex items-center overflow-hidden border-0">
+        {/* Enhanced background overlay for better contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/60 via-gray-800/50 to-gray-900/70 border-0"></div>
+
+        {/* Vibrant parallax background elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-orange-400 to-red-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * 0.5}px) translateX(${scrollY * 0.3}px) scale(${1 + scrollY * 0.0001})`
+            }}
+          ></div>
+          <div
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * -0.4}px) translateX(${scrollY * -0.3}px) scale(${1 + scrollY * 0.0002})`
+            }}
+          ></div>
+          <div
+            className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * 0.6}px) translateX(${scrollY * 0.4}px) rotate(${scrollY * 0.1}deg)`
+            }}
+          ></div>
         </div>
 
-        <div className="relative container mx-auto px-6 py-20 z-10">
+        <div className="relative container mx-auto px-6 py-16 z-10">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
 
               {/* Left side - Text content */}
-              <div className="text-center lg:text-left space-y-10">
-                {/* Restaurant name with elegant typography */}
-                <div className="space-y-6 animate-fade-in-up">
-                  <h1 className="text-7xl md:text-9xl font-serif font-bold text-gray-800 leading-none">
-                    Tu casa
+              <div
+                className="text-center lg:text-left space-y-8"
+                style={{
+                  transform: `translateY(${scrollY * 0.3}px)`
+                }}
+              >
+                {/* Restaurant name with enhanced contrast */}
+                <div className="space-y-4">
+                  <h1 className="text-6xl md:text-8xl font-playfair font-bold text-white leading-none tracking-tight drop-shadow-2xl">
+                    Tu Casa
                   </h1>
-                  <h2 className="text-3xl md:text-5xl font-light text-gray-600 italic -mt-4">
-                    restaurantes
+                  <h2 className="text-2xl md:text-4xl font-montserrat font-light text-orange-300 italic -mt-4 drop-shadow-lg">
+                    Restaurantes
                   </h2>
                 </div>
 
-                {/* SEO-optimized headline */}
-                <div className="relative animate-fade-in-up">
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                {/* Enhanced headline with better contrast */}
+                <div className="space-y-4">
+                  <h3 className="text-2xl md:text-3xl font-montserrat font-medium text-white leading-relaxed drop-shadow-lg">
                     Authentic Salvadoran Food in Portland, ME
                   </h3>
-                  <p className="text-xl md:text-2xl text-gray-700 font-light leading-relaxed">
-                    <span className="text-orange-500 font-serif italic text-3xl">&ldquo;</span>
-                    The taste of home
-                    <span className="text-orange-500 font-serif italic text-3xl">&rdquo;</span>
-                  </p>
-                  <p className="text-lg md:text-xl text-gray-600 font-light italic mt-2">
-                    Made with love
-                  </p>
-                  <div className="absolute -bottom-2 left-1/2 lg:left-0 transform -translate-x-1/2 lg:translate-x-0 w-24 h-1 bg-gradient-to-r from-orange-500 to-green-500 rounded-full"></div>
+                  <div className="space-y-4">
+                    <p className="text-xl md:text-2xl text-orange-200 font-medium leading-relaxed drop-shadow-md">
+                      <span className="text-orange-300 font-playfair italic text-3xl">&ldquo;</span>
+                      The taste of home
+                      <span className="text-orange-300 font-playfair italic text-3xl">&rdquo;</span>
+                    </p>
+                    <p className="text-lg md:text-xl text-gray-100 font-opensans font-medium italic drop-shadow-md">
+                      Made with love and tradition
+                    </p>
+                  </div>
+                  <div className="w-24 h-1 bg-gradient-to-r from-orange-300 to-orange-200 rounded-full shadow-lg"></div>
                 </div>
 
 
-                {/* Meal time indicators */}
-                <div className="flex justify-center lg:justify-start items-center gap-4 mb-6 animate-fade-in-up">
+                {/* Enhanced meal time indicators */}
+                <div className="flex justify-center lg:justify-start items-center gap-8">
                   {/* Breakfast */}
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center organic-shadow">
-                      <Coffee className="w-6 h-6 text-white" />
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="w-14 h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50 shadow-lg">
+                      <Coffee className="w-7 h-7 text-orange-100" />
                     </div>
-                    <span className="text-sm font-medium text-gray-600">Breakfast</span>
+                    <span className="text-sm font-montserrat font-semibold text-white drop-shadow-md">Breakfast</span>
                   </div>
 
                   {/* Lunch */}
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center organic-shadow">
-                      <UtensilsCrossed className="w-6 h-6 text-white" />
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="w-14 h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50 shadow-lg">
+                      <UtensilsCrossed className="w-7 h-7 text-orange-100" />
                     </div>
-                    <span className="text-sm font-medium text-gray-600">Lunch</span>
+                    <span className="text-sm font-montserrat font-semibold text-white drop-shadow-md">Lunch</span>
                   </div>
 
                   {/* Dinner */}
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center organic-shadow">
-                      <Sunset className="w-6 h-6 text-white" />
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="w-14 h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50 shadow-lg">
+                      <Sunset className="w-7 h-7 text-orange-100" />
                     </div>
-                    <span className="text-sm font-medium text-gray-600">Dinner</span>
+                    <span className="text-sm font-montserrat font-semibold text-white drop-shadow-md">Dinner</span>
                   </div>
                 </div>
 
-                {/* Organic action buttons */}
-                <div className="flex justify-center lg:justify-start items-center pt-2 animate-fade-in-up">
+                {/* Enhanced action button */}
+                <div className="flex justify-center lg:justify-start items-center pt-8">
                   <a
                     href="https://online.tucasarestaurantes.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-12 py-6 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 organic-shadow hover:organic-shadow-lg min-w-[280px]"
+                    className="group relative bg-gradient-to-r from-orange-500 to-orange-600 border-2 border-orange-400 text-white px-10 py-4 rounded-full text-lg font-montserrat font-semibold transition-all duration-300 hover:from-orange-600 hover:to-orange-700 hover:border-orange-500 shadow-xl hover:shadow-2xl min-w-[240px]"
                   >
-                    <span className="flex items-center justify-center gap-2">
+                    <span className="flex items-center justify-center gap-3">
                       <ShoppingCart className="w-5 h-5" />
-                      Order now
+                      Order Now
                     </span>
                   </a>
                 </div>
               </div>
 
               {/* Right side - Food showcase */}
-              <div className="relative animate-fade-in-up">
+              <div
+                className="relative"
+                style={{
+                  transform: `translateY(${scrollY * -0.4}px) scale(${1 + scrollY * 0.0001})`
+                }}
+              >
                 <div className="relative group">
-                  {/* Soft shadow behind image */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-green-300/20 rounded-3xl blur-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
+                  {/* Elegant shadow behind image */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-green-500/20 rounded-3xl blur-3xl transform rotate-2 group-hover:rotate-3 transition-transform duration-700"></div>
 
                   {/* Main food image - Slider */}
-                  <div className="relative bg-white rounded-3xl p-6 organic-shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
+                  <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 transform -rotate-1 group-hover:rotate-0 transition-all duration-700">
                     <div className="relative rounded-2xl overflow-hidden w-full h-[400px] md:h-[500px]">
                       {isMounted ? (
                         sliderImages.map((src, index) => (
@@ -166,15 +215,15 @@ export default function Home() {
                       )}
                     </div>
 
-                    {/* Organic floating elements */}
-                    <div className="absolute -top-4 -right-4 bg-orange-500 text-white px-6 py-3 rounded-full font-semibold text-sm organic-shadow transform rotate-12 flex items-center gap-2 animate-bounce">
+                    {/* Enhanced floating elements with better contrast */}
+                    <div className="absolute -top-6 -right-6 bg-gradient-to-r from-orange-500 to-orange-600 border-2 border-orange-400 text-white px-6 py-3 rounded-full font-montserrat font-semibold text-sm transform rotate-12 flex items-center gap-2 shadow-xl">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
-                      Chef&apos;s Special!
+                      Chef&apos;s Special
                     </div>
 
-                    <div className="absolute -bottom-3 -left-3 bg-green-600 text-white px-4 py-2 rounded-full font-medium text-xs organic-shadow transform -rotate-12 flex items-center gap-2 animate-pulse">
+                    <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-green-500 to-green-600 border-2 border-green-400 text-white px-4 py-2 rounded-full font-montserrat font-semibold text-xs transform -rotate-12 flex items-center gap-2 shadow-xl">
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
                       </svg>
@@ -190,11 +239,26 @@ export default function Home() {
 
 
       {/* Benefits Section */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-stone-50">
+      <section id="menu" className="pt-0 pb-16 bg-gradient-to-b from-orange-50 to-amber-100 relative overflow-hidden">
+        {/* Vibrant parallax background elements */}
+        <div className="absolute inset-0 opacity-25">
+          <div
+            className="absolute top-1/3 left-1/6 w-72 h-72 bg-gradient-to-br from-orange-400 to-red-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * 0.4}px) translateX(${scrollY * 0.2}px) scale(${1 + scrollY * 0.0001})`
+            }}
+          ></div>
+          <div
+            className="absolute bottom-1/3 right-1/6 w-64 h-64 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * -0.3}px) translateX(${scrollY * -0.2}px) rotate(${scrollY * 0.05}deg)`
+            }}
+          ></div>
+        </div>
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="w-full flex flex-col items-center justify-center rounded-2xl py-8 sm:py-12 px-2 sm:px-4 ">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#6B2C2C] mb-4 sm:mb-6 text-center">WHAT&apos;S NEW AT TUCASA</h2>
+            <div className="w-full flex flex-col items-center justify-center rounded-2xl pt-4 pb-8 sm:pt-6 sm:pb-12 px-2 sm:px-4 ">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-playfair font-black tracking-tight text-[#6B2C2C] mb-4 sm:mb-6 text-center">WHAT&apos;S NEW AT TUCASA</h2>
 
               {/* Benefits ribbon - responsive grid layout */}
               <div className="w-full max-w-4xl">
@@ -347,14 +411,29 @@ export default function Home() {
 
 
       {/* How It Works Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-b from-amber-50 to-orange-100 relative overflow-hidden">
+        {/* Vibrant parallax background elements */}
+        <div className="absolute inset-0 opacity-25">
+          <div
+            className="absolute top-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * 0.4}px) translateX(${scrollY * -0.2}px) scale(${1 + scrollY * 0.0001})`
+            }}
+          ></div>
+          <div
+            className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * -0.3}px) translateX(${scrollY * 0.25}px) rotate(${scrollY * 0.08}deg)`
+            }}
+          ></div>
+        </div>
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-gray-800 mb-6">
                 How to Order in 3 Simple Steps
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl font-opensans text-gray-600 max-w-3xl mx-auto">
                 Get your favorite Salvadoran food quickly and easily
               </p>
             </div>
@@ -368,8 +447,8 @@ export default function Home() {
                   </div>
                   <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-orange-500 to-transparent transform translate-x-10"></div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Choose Your Food</h3>
-                <p className="text-gray-600 text-lg">
+                <h3 className="text-2xl font-montserrat font-bold text-gray-800 mb-4">Choose Your Food</h3>
+                <p className="text-gray-600 text-lg font-opensans">
                   Browse our online menu or call to see our options. From pupusas to complete dishes.
                 </p>
               </div>
@@ -382,8 +461,8 @@ export default function Home() {
                   </div>
                   <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-green-500 to-transparent transform translate-x-10"></div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Place Your Order</h3>
-                <p className="text-gray-600 text-lg">
+                <h3 className="text-2xl font-montserrat font-bold text-gray-800 mb-4">Place Your Order</h3>
+                <p className="text-gray-600 text-lg font-opensans">
                   Order online with a few clicks or call {contactInfo.phoneFormatted}. We accept all forms of payment.
                 </p>
               </div>
@@ -395,8 +474,8 @@ export default function Home() {
                     <span className="text-2xl font-bold text-white">3</span>
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Enjoy!</h3>
-                <p className="text-gray-600 text-lg">
+                <h3 className="text-2xl font-montserrat font-bold text-gray-800 mb-4">Enjoy!</h3>
+                <p className="text-gray-600 text-lg font-opensans">
                   Your food is prepared in 20-25 minutes. Delivery or pickup available.
                 </p>
               </div>
@@ -407,7 +486,22 @@ export default function Home() {
       </section>
 
       {/* Contact Section with warm feeling */}
-      <section className="py-24 bg-gradient-to-b from-stone-50 to-gray-50">
+      <section id="contact" className="py-24 bg-gradient-to-b from-yellow-50 to-orange-100 relative overflow-hidden">
+        {/* Vibrant parallax background elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div
+            className="absolute top-1/2 left-1/3 w-96 h-96 bg-gradient-to-br from-orange-400 to-red-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * 0.3}px) translateX(${scrollY * 0.2}px)`
+            }}
+          ></div>
+          <div
+            className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * -0.25}px) translateX(${scrollY * -0.2}px)`
+            }}
+          ></div>
+        </div>
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-4xl mx-auto">
 
@@ -483,7 +577,28 @@ export default function Home() {
       </section>
 
       {/* Why Choose Tu Casa - Enhanced Promise Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-stone-100">
+      <section className="py-24 bg-gradient-to-b from-amber-100 to-orange-200 relative overflow-hidden">
+        {/* Vibrant parallax background elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div
+            className="absolute top-1/4 left-1/5 w-88 h-88 bg-gradient-to-br from-orange-400 to-red-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * 0.2}px) translateX(${scrollY * 0.1}px)`
+            }}
+          ></div>
+          <div
+            className="absolute bottom-1/4 right-1/5 w-72 h-72 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * -0.15}px) translateX(${scrollY * -0.1}px)`
+            }}
+          ></div>
+          <div
+            className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * 0.3}px) translateX(${scrollY * 0.2}px)`
+            }}
+          ></div>
+        </div>
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
 
@@ -501,7 +616,12 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
 
               {/* Feature 1 - Enhanced Card */}
-              <div className="group animate-fade-in-up">
+              <div
+                className="group animate-fade-in-up"
+                style={{
+                  transform: `translateY(${scrollY * 0.2}px) translateX(${scrollY * 0.1}px)`
+                }}
+              >
                 <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
                   {/* Gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -535,7 +655,12 @@ export default function Home() {
               </div>
 
               {/* Feature 2 - Enhanced Card */}
-              <div className="group animate-fade-in-up">
+              <div
+                className="group animate-fade-in-up"
+                style={{
+                  transform: `translateY(${scrollY * -0.15}px) translateX(${scrollY * -0.1}px)`
+                }}
+              >
                 <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
                   {/* Gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-green-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -569,7 +694,12 @@ export default function Home() {
               </div>
 
               {/* Feature 3 - Enhanced Card */}
-              <div className="group animate-fade-in-up">
+              <div
+                className="group animate-fade-in-up"
+                style={{
+                  transform: `translateY(${scrollY * 0.25}px) translateX(${scrollY * 0.15}px)`
+                }}
+              >
                 <div className="relative bg-white rounded-3xl p-8 organic-shadow hover:organic-shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
                   {/* Gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -607,7 +737,22 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer className="bg-gray-900 text-white py-16 relative overflow-hidden">
+        {/* Parallax background elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * 0.6}px) translateX(${scrollY * 0.4}px) scale(${1 + scrollY * 0.0002}) rotate(${scrollY * 0.1}deg)`
+            }}
+          ></div>
+          <div
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-500 rounded-full blur-3xl"
+            style={{
+              transform: `translateY(${scrollY * -0.5}px) translateX(${scrollY * -0.3}px) scale(${1 + scrollY * 0.0001}) rotate(${scrollY * -0.1}deg)`
+            }}
+          ></div>
+        </div>
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
