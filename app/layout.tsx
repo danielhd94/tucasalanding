@@ -1,6 +1,25 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
+import { Playfair_Display, Montserrat, Open_Sans } from "next/font/google";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  variable: "--font-opensans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Tu Casa Restaurantes | Auténtica Comida Salvadoreña en Portland, ME",
@@ -125,7 +144,7 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
       </head>
-      <body className="antialiased">
+      <body className={`antialiased ${playfair.variable} ${montserrat.variable} ${openSans.variable}`}>
         {children}
       </body>
     </html>
